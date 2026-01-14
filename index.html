@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贴贴桌面小猫 - 你的桌面摸鱼神器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- 引入可爱的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Zcool+KuaiLe&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Nunito', 'Microsoft YaHei', sans-serif; background-color: #FFF0F5; color: #4A5568; }
+        h1, h2, h3, .brand-font { font-family: 'Zcool KuaiLe', cursive; }
+        
+        /* 玻璃拟态卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+            border-radius: 24px;
+        }
+        
+        /* 渐变按钮 */
+        .btn-gradient {
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 105, 135, 0.3);
+        }
+
+        /* 漂浮动画 */
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* 背景装饰球 */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .blob-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: #FFD1DC; }
+        .blob-2 { bottom: 10%; right: -50px; width: 400px; height: 400px; background: #E0F7FA; }
+        .blob-3 { top: 40%; left: 20%; width: 200px; height: 200px; background: #FFF9C4; }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <!-- 背景元素 -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full z-50 py-4 px-6">
+        <div class="max-w-6xl mx-auto glass-card px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="./images/logo.png" class="w-10 h-10 rounded-lg bg-white p-1 shadow-sm">
+                <span class="text-2xl brand-font text-pink-500 tracking-wider">贴贴小猫</span>
+            </div>
+            <div class="hidden md:flex gap-6 font-bold text-sm text-gray-500">
+                <a href="#home" class="hover:text-pink-500 transition">首页</a>
+                <a href="#features" class="hover:text-pink-500 transition">功能展示</a>
+                <a href="#guide" class="hover:text-pink-500 transition">使用教程</a>
+            </div>
+            <a href="#download" class="btn-gradient text-white px-5 py-2 rounded-full font-bold text-sm shadow-md">
+                <i class="fas fa-paw mr-1"></i> 下载
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. 首页 Hero 区域 -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+            <!-- 左侧文字 -->
+            <div class="md:w-1/2 text-center md:text-left space-y-6">
+                <div class="inline-block px-3 py-1 bg-pink-100 text-pink-500 rounded-full text-xs font-bold mb-2">
+                    ✨ 桌面新宠 v1.0.1
+                </div>
+                <h1 class="text-5xl md:text-6xl text-slate-800 leading-tight">
+                    敲击键盘，<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400">心动</span> 的回响。
+                </h1>
+                <p class="text-lg text-slate-500">
+                    支持多人联机、云端皮肤同步、窗口穿透。<br>
+                    不仅仅是装饰，更是陪伴你工作学习的好伙伴。
+                </p>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="#download" class="btn-gradient px-8 py-3 rounded-xl text-white font-bold shadow-lg">
+                        立即领养
+                    </a>
+                    <a href="#features" class="glass-card px-8 py-3 rounded-xl text-slate-600 font-bold hover:bg-white transition">
+                        了解更多
+                    </a>
+                </div>
+            </div>
+            <!-- 右侧图片：你的 Hero 图比较小，我们用装饰圆环衬托它 -->
+            <div class="md:w-1/2 flex justify-center relative">
+                <div class="relative w-72 h-72 bg-white/40 rounded-full flex items-center justify-center shadow-2xl backdrop-blur-sm float-anim">
+                    <div class="absolute inset-0 border-4 border-white/50 rounded-full -m-4"></div>
+                    <!-- 你的宠物图 220x155 -->
+                    <img src="./images/hero-cat.png" class="w-56 object-contain transform scale-110 drop-shadow-xl" alt="Hero Cat">
+                    
+                    <!-- 悬浮的小标签 -->
+                    <div class="absolute -bottom-4 right-0 glass-card px-4 py-2 text-xs font-bold text-slate-600 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> 系统运行中
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 核心功能展示 -->
+    <section id="features" class="py-10 px-6">
+        <div class="max-w-6xl mx-auto space-y-20">
+            
+            <!-- 功能一：横向大图 (键盘同步) -->
+            <div class="glass-card p-8 md:p-12 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-2 h-full bg-blue-400"></div>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/2 space-y-4">
+                        <h3 class="text-3xl text-slate-800">🎹 键鼠神同步</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            基于底层钩子技术，实时捕捉你的每一次按键和点击。<br>
+                            支持左右手动作区分，双爪配合，让码字充满节奏感。
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <!-- 你的动图 381x156，适合横放 -->
+                        <img src="./images/feature-1.gif" class="w-full rounded-xl shadow-lg border border-white transform group-hover:scale-105 transition duration-500" alt="键盘同步演示">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 双列展示：适合竖长的动图 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- 功能二：多人联机 -->
+                <div class="glass-card p-8 flex flex-col items-center text-center space-y-6 hover:border-orange-300 transition duration-300">
+                    <div class="space-y-2">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto text-xl mb-4"><i class="fas fa-network-wired"></i></div>
+                        <h3 class="text-2xl text-slate-800">🌍 多人在线贴贴</h3>
+                        <p class="text-sm text-slate-500 px-4">
+                            输入房间号，立马和朋友的猫咪同屏出现。<br>
+                            在线状态置顶显示，离线也能查看最后出没时间。
+                        </p>
+                    </div>
+                    <!-- 你的动图 499x832，很长，限制最大宽度展示 -->
+                    <div class="w-full max-w-[280px] rounded-xl overflow-hidden shadow-lg border-4 border-slate-800 bg-slate-800 relative">
+                        <div class="h-6 w-full bg-slate-800 flex justify-center"><div class="w-16 h-1 bg-slate-600 rounded-full mt-2"></div></div>
+                        <img src="./images/feature-2.gif" class="w-full h-auto" alt="联机界面">
+                    </div>
+                </div>
+
+                <!-- 功能三：皮肤系统 -->
+                <div class="glass-card p-8 flex flex-col items-center text-center space-y-6 hover:border-pink-300 transition duration-300">
+                    <div class="space-y-2">
+                        <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto text-xl mb-4"><i class="fas fa-tshirt"></i></div>
+                        <h3 class="text-2xl text-slate-800">🎨 云端皮肤库</h3>
+                        <p class="text-sm text-slate-500 px-4">
+                            不仅有“原版小猫”，还有各种有趣皮肤。<br>
+                            一键下载换肤，后续还将支持自定义上传。
+                        </p>
+                    </div>
+                    <!-- 你的动图 308x552，也是竖长 -->
+                    <div class="w-full max-w-[280px] rounded-xl overflow-hidden shadow-lg border-4 border-slate-800 bg-slate-800 relative">
+                        <div class="h-6 w-full bg-slate-800 flex justify-center"><div class="w-16 h-1 bg-slate-600 rounded-full mt-2"></div></div>
+                        <img src="./images/feature-3.gif" class="w-full h-auto" alt="皮肤界面">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 使用教程与托盘控制 -->
+    <section id="guide" class="py-16 bg-white/40">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl text-center mb-12 brand-font text-slate-700">新手上手指南</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <!-- 左侧：托盘动图 308x342 -->
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <img src="./images/feature-4.gif" class="relative rounded-lg shadow-xl border border-white w-full max-w-[260px]" alt="托盘菜单">
+                    </div>
+                </div>
+
+                <!-- 右侧：步骤文字 -->
+                <div class="md:w-2/3 space-y-8 pt-4">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-pink-500 shadow-sm border border-pink-100">1</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800">如何移动猫咪？</h4>
+                            <p class="text-sm text-slate-600 mt-1">
+                                按住猫咪图片即可随意拖动，甚至可以拖到屏幕外！<br>
+                                松开鼠标后位置自动保存，下次启动还在老地方。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-pink-500 shadow-sm border border-pink-100">2</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800">如何打开设置 / 联机？</h4>
+                            <p class="text-sm text-slate-600 mt-1">
+                                点击猫咪下方的 <b class="bg-gray-200 px-1 rounded text-xs">≡</b> 按钮，即可打开控制面板。<br>
+                                在这里你可以改名、加入房间、换皮肤、看公告。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-pink-500 shadow-sm border border-pink-100">3</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800">更多高级功能</h4>
+                            <p class="text-sm text-slate-600 mt-1">
+                                <b>右键点击</b> 任务栏右下角的托盘图标（如左图所示）：
+                                <ul class="list-disc list-inside mt-2 text-xs text-slate-500 space-y-1">
+                                    <li><i class="fas fa-expand-arrows-alt text-blue-400"></i> <b>界面缩放</b>：调整猫咪大小 (50% - 175%)</li>
+                                    <li><i class="fas fa-ghost text-purple-400"></i> <b>窗口穿透</b>：鼠标点不到猫咪，适合打游戏时挂着</li>
+                                    <li><i class="fas fa-eye-slash text-gray-400"></i> <b>隐藏计数栏</b>：纯净模式，只显示猫</li>
+                                    <li><i class="fas fa-power-off text-red-400"></i> <b>开机自启</b>：陪伴从开机开始</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 下载区域 -->
+    <section id="download" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto glass-card p-10 md:p-16 text-center relative overflow-hidden">
+            <!-- 背景装饰 -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-300 via-pink-300 to-yellow-300"></div>
+            
+            <h2 class="text-4xl md:text-5xl brand-font text-slate-800 mb-6">准备好领养了吗？</h2>
+            <p class="text-lg text-slate-500 mb-8 max-w-2xl mx-auto">
+                MyCat Pro v1.0.1 | 绿色免安装 | 解压即用 | 无广告
+            </p>
+
+            <!-- 👇👇👇 新增的：防坑指南提示框 👇👇👇 -->
+            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 mb-10 text-left rounded-r-xl shadow-sm mx-auto max-w-2xl">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-triangle text-orange-400 text-xl"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-bold text-orange-800">⚠️ 启动前必读（防闪退/被拦截）</h3>
+                        <div class="mt-2 text-sm text-orange-700 space-y-1">
+                            <p>1. 请<b>务必先解压</b>！不要在压缩包里直接双击运行，否则猫咪会找不到回家的路。</p>
+                            <p>2. 建议将解压后的文件夹<b>拖到桌面</b>或 D 盘根目录。</p>
+                            <p>3. 如果启动没反应或提示防火墙拦截，是因为 Windows 对下载文件比较敏感，请点击<b>“允许访问”</b>或<b>“仍要运行”</b>，猫咪是无毒的哦！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 👆👆👆 新增结束 👆👆👆 -->
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://pan.baidu.com/s/1sGPJ4N3dgshYir9VV6JPwQ?pwd=8417" target="_blank" class="btn-gradient text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl flex items-center justify-center gap-2 hover:scale-105 transition">
+                    <i class="fas fa-cloud-download-alt"></i> 百度网盘下载
+                </a>
+                <a href="#" class="bg-white text-slate-700 border border-slate-200 px-10 py-4 rounded-xl font-bold text-lg shadow-sm flex items-center justify-center gap-2 hover:bg-gray-50 transition">
+                    <i class="fab fa-github"></i> GitHub 源码
+                </a>
+            </div>
+            <p class="mt-4 text-xs text-slate-400">提取码: 8417 | 大小: 约 15MB</p>
+
+            <!-- 公告预览区 -->
+            <div class="mt-12 bg-white/50 rounded-2xl p-6 text-left max-w-xl mx-auto border border-white">
+                <h4 class="font-bold text-pink-500 mb-2"><i class="fas fa-bullhorn mr-2"></i>最新公告</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    🎉 <b>v1.0.1 更新内容：</b><br>
+                    1. 修复了离线好友时间显示异常的 Bug。<br>
+                    2. 优化了设置界面 UI，更加粉嫩可爱。<br>
+                    3. 新增自适应高度，长腿猫咪也能完整显示啦！<br>
+                    4. 房间列表新增在线优先排序。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-8 text-slate-400 text-xs">
+        <p>Designed with ❤️ by TietieCat Team</p>
+    </footer>
+
+</body>
+</html>
